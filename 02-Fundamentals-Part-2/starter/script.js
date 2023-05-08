@@ -87,3 +87,83 @@ console.log(friends);
 console.log(friends.indexOf("steven"));
 
 console.log(friends.includes("steven"));
+
+//-----------------------041 Introduction to Objects
+//(vs. array) key/property value pairs, so we can get a value by its name
+//array for order data, object for unstructed data
+const jonas = {
+  firstName: "jonas",
+  lastName: "schemdmann",
+  age: 2037 - 1991,
+  job: "techer",
+  friends: ["michael", "steven", "peter"],
+};
+
+//-----------------------042 DOT vs. bracket notation
+console.log(jonas.lastName);
+console.log(jonas["lastName"]); //can out any expression
+
+const nameKey = "Name";
+console.log(jonas["last" + nameKey]);
+
+// const interestedIn = prompt(
+//   "What do you want to about Jonas? Choose between firstName, lastName, age, job, and friends"
+// );
+
+// if (jonas[interestedIn]) {
+//   console.log(jonas[interestedIn]);
+// } else {
+//   console.log(
+//     "Wrong request! Choose between firstName, lastName, age, job, and friends"
+//   );
+// }
+
+// jonas.location = "Portugal";
+// jonas["twitter"] = "@jonasschmedtman";
+// console.log(jonas);
+
+//challenge
+const challengeSentence = `${jonas["firstName"]} has ${jonas.friends.length} friends, and his best friend is called ${jonas.friends[0]}}`;
+console.log(challengeSentence);
+
+//-----------------------043 object methods
+const jonas2 = {
+  firstName: "jonas",
+  lastName: "schemdmann",
+  birthYeah: 1991,
+  job: "techer",
+  friends: ["michael", "steven", "peter"],
+  hasDriverLicense: true,
+
+  // calAge: function (birthYeah) {
+  //   return 2037 - birthYeah;
+  // },
+
+  // calAge: function () {
+  //   console.log(this);
+  //   return 2037 - this.birthYeah;
+  // },
+
+  //only need to calculate the age once
+  calAge: function () {
+    this.age = 2037 - this.birthYeah;
+    return this.age;
+  },
+
+  //
+  getSummary: function () {
+    return `${this.firstName} is a ${this.calAge()}-year old ${
+      this.job
+    }, and he has ${this.hasDriversLicense ? "a" : "no"} driver's license.`;
+  },
+};
+
+console.log(jonas2.calAge());
+// console.log(jonas2["calAge"](1991));
+
+console.log(jonas2.age);
+
+console.log(jonas2.getSummary());
+
+//so, arrays are actually also objects, they ar just special kind of object,
+//so they have funcitons/methods that we can use to manipulate them
