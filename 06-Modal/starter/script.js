@@ -23,14 +23,24 @@ for(let i=0;i<btnOpenModal.length;i++){
     btnOpenModal[i].addEventListener("click",openModal);
 }
 
-
-
-
 btnCloseModal.addEventListener('click',closeModal);
 
 overlay.addEventListener('click',closeModal);
 
 
+// keybord events are global events, 
+// they do not happen on one specific elements
+// so we usually listen on the whole document
+document.addEventListener("keydown",function(event){
+    console.log("A key was pressed");
+    console.log(event);
+    console.log(event.key)
+    if(event.key==="Escape" && !modal.classList.contains("hidden")){     
+     
+            closeModal();
+        
+    }
+});
 
 
 
