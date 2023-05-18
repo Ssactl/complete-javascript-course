@@ -29,6 +29,12 @@ const restaurant = {
     );
   },
 
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
+    );
+  },
+
   openingHours: {
     thu: {
       open: 12,
@@ -44,6 +50,35 @@ const restaurant = {
     },
   },
 };
+
+//-----------105 spread operator
+//we can use it to bulid a new array and pass arguments to functions
+//copy array -> shallow copy
+const mainMenuCopy = [...restaurant.mainMenu];
+//Iterables: arrays, strings, maps, sets. NOT objects
+const str = 'jonas';
+const letters = [...str, '', 's'];
+console.log(letters);
+//we cannot use it in string template
+// console.log(`${...str}`);
+
+const ingredients = [
+  prompt("Let's make pasta! Ingredient 1?"),
+  prompt("Let's make pasta! Ingredient 2?"),
+  prompt("Let's make pasta! Ingredient 3?"),
+];
+
+console.log(ingredients);
+restaurant.orderPasta([...ingredients]);
+
+//spread operator in Objects
+const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
+console.log(newRestaurant);
+
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = 'Ristorante Roma';
+console.log(restaurantCopy.name);
+console.log(restaurant.name);
 
 //!!!!!!!!!!!!!the power of destructuring objects when receiving object parameter
 restaurant.orderDelivery({
