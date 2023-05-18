@@ -90,3 +90,17 @@ var addArrow = (a, b) => {
 };
 
 //Now in mordern js, we have another way for more parameters situation.
+
+//---------Primitive types vs. Refernce types(object)
+//Copying objects
+const jessica2 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+};
+
+const jessicaCopy = Object.assign({}, jessica2); //it merge two objects
+//But it only works the first level.(shallow copy)
+jessicaCopy.lastName = 'Davis';
+console.log('Before marriage', jessica2);
+console.log('After marriage', jessicaCopy);
