@@ -79,6 +79,13 @@ rest2.numGuests ||= 10;
 console.log(rest1);
 console.log(rest2);
 
+//AND asignment operator
+//it assign a value to a variable if it is currentl truthy
+rest1.owner = rest1.owner && '<ANONYMOUS>';
+console.log(rest1); //undefiend
+rest1.owner &&= '<ANONYMOUS>';
+console.log(rest1); //
+
 //----------108 hte nullish coalescing operator
 restaurant.numGuests = 0;
 const guests3 = restaurant.numGuests ? restaurant.numGuests : 10;
