@@ -56,6 +56,76 @@ const restaurant = {
   },
 };
 
+/*
+///////////////////////////////////////
+// Coding Challenge #1
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+//1
+const [player1, player2] = game.players;
+//2
+const [gk, ...fieldPlayers] = player1;
+//3
+const allPlayers = [...player1, ...player2];
+//4
+const players1Final = [...player1, 'Thiago', 'Coutinho', 'Perisic'];
+//5
+// const { team1, draw, team2 } = game.odds;
+const { team1, x: draw, team2 } = game.odds;
+//6
+const printGoals = (...playerNames) => {
+  for (let i = 0; i < playerNames.length; i++) {
+    console.log(playerNames[i]);
+  }
+  console.log(playerNames.length);
+};
+//7
+console.log(
+  (team1 < team2 && 'Team 1 is more likely to win') ||
+    'Team 2 is more likely to win'
+);
+*/
+
+/*
 //---------109 logical assignment operator
 //three new so called logcal assignment operators were introduced in ES2020
 
@@ -85,7 +155,9 @@ rest1.owner = rest1.owner && '<ANONYMOUS>';
 console.log(rest1); //undefiend
 rest1.owner &&= '<ANONYMOUS>';
 console.log(rest1); //
+*/
 
+/*
 //----------108 hte nullish coalescing operator
 restaurant.numGuests = 0;
 const guests3 = restaurant.numGuests ? restaurant.numGuests : 10;
@@ -97,7 +169,7 @@ console.log(guests3);
 //nullish: null and undefined(NOT 0 or "")
 const guestCorrect = restaurant.numGuests ?? 10;
 console.log(guestCorrect);
-
+*/
 /*
 //-----------107 short circuiting(&& and ||)
 //logic operator:
