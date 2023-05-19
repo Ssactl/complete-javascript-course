@@ -56,9 +56,9 @@ const restaurant = {
   },
 };
 
-/*
 ///////////////////////////////////////
-// Coding Challenge #1
+// Coding Challenge #2
+
 const game = {
   team1: 'Bayern Munich',
   team2: 'Borrussia Dortmund',
@@ -99,6 +99,26 @@ const game = {
     team2: 6.5,
   },
 };
+//1
+for (const [score, player] of game.scored.entries())
+  console.log(`Goal ${score + 1}: ${player}`);
+//2
+let sum = 0;
+for (const odd of Object.values(game.odds)) sum += odd;
+console.log(sum / Object.values(game.odds).length);
+//3
+for (const [key, value] of Object.entries(game.odds))
+  console.log(`Odd of ${game[key] ?? 'draw'}: ${value}`);
+//4
+const scorers = {};
+for (const player of game.scored)
+  scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+// (scorers[player] && scorers[player]++) || (scorers[player] = 1);
+console.log(scorers);
+
+/*
+///////////////////////////////////////
+// Coding Challenge #1
 
 //1
 const [player1, player2] = game.players;
