@@ -56,6 +56,48 @@ const restaurant = {
   },
 };
 
+//----------108 hte nullish coalescing operator
+restaurant.numGuests = 0;
+const guests3 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests3);
+
+//solution
+
+//nullish value instead of falsy value
+//nullish: null and undefined(NOT 0 or "")
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
+
+/*
+//-----------107 short circuiting(&& and ||)
+//logic operator:
+//use any data type, return any data type, short-circuiting
+//in ||, short circuiting means if the first value is a truthy value, it will immediately return this value
+
+console.log('------- OR ----------');
+console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+const guests2 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+console.log(guests2);
+restaurant.numGuests = 0;
+const guests3 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests3);
+
+console.log('------- AND ----------');
+//in &&, short circuiting means if the first value is a false value, it will immediately return this value without even evaluate other operas
+console.log(0 && 'jonas');
+
+//pratical example
+//use and operator to execute code in the second operan if the first one is ture
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms');
+}
+
+restaurant.orderPizza && restaurant.orderPizza('mushrooms');
+*/
+/*
 //-----------106 rest pattern -> pack
 //1)destructuring
 //spread, because on RIGHT side of =
@@ -92,6 +134,7 @@ add(...x);
 
 restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
 restaurant.orderPizza('mushrooms');
+*/
 
 /*
 //-----------105 spread operator -> upack
