@@ -56,6 +56,44 @@ const restaurant = {
   },
 };
 
+//---------116 Sets
+const ordersSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risoto',
+  'Pasta',
+  'Pizza',
+]);
+console.log(ordersSet);
+console.log(new Set('Jonas'));
+console.log(ordersSet.size);
+console.log(ordersSet.has('Bread'));
+ordersSet.add('Garlic Bread');
+ordersSet.add('Garlic Bread');
+ordersSet.delete('Risotto');
+// ordersSet.clear();
+console.log(ordersSet);
+
+for (const order of ordersSet) console.log(order);
+//There is no need to get value out of a set
+//if you need, just use an array
+
+//the main use of set is to remove dupicate value of array
+
+//Example
+//sets is also iterable
+//spread operator works on all iterable objects
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+console.log(
+  new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size
+);
+console.log(new Set('Jonasschmedtman').size);
+//Sets are not intended to replace array at all
+
+/*
 ///////////////////////////////////////
 // Coding Challenge #2
 
@@ -115,7 +153,7 @@ for (const player of game.scored)
   scorers[player] ? scorers[player]++ : (scorers[player] = 1);
 // (scorers[player] && scorers[player]++) || (scorers[player] = 1);
 console.log(scorers);
-
+*/
 /*
 ///////////////////////////////////////
 // Coding Challenge #1
