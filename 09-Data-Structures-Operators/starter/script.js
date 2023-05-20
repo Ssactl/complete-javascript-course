@@ -56,6 +56,43 @@ const restaurant = {
   },
 };
 
+/*
+//-------117 maps
+const rest = new Map();
+rest.set('name', 'Classico Italiano');
+rest.set(1, 'FirenzeItaly');
+console.log(rest.set(2, Lisbon));
+
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'we are open')
+  .set(false, 'we are closed');
+
+console.log(rest.get('name'));
+console.log(rest.get('true'));
+console.log(rest.get(true));
+
+const time = 21;
+console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+console.log(rest.has('categories'));
+rest.delete(1);
+
+const arr = [1, 2];
+// rest.set([1, 2], 'test');
+rest.set(arr, 'test');
+console.log(rest);
+console.log(rest.size);
+// rest.clear();
+console.log(rest);
+
+//two [1.2] are not the same objects in the heap
+// console.log(rest.get([1, 2]));
+console.log(rest.get(arr));
+*/
+
+/*
 //---------116 Sets
 const ordersSet = new Set([
   'Pasta',
@@ -92,7 +129,7 @@ console.log(
 );
 console.log(new Set('Jonasschmedtman').size);
 //Sets are not intended to replace array at all
-
+*/
 /*
 ///////////////////////////////////////
 // Coding Challenge #2
