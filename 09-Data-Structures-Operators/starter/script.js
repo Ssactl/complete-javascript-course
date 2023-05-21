@@ -57,6 +57,37 @@ const restaurant = {
 };
 
 /*
+//------114 coding challenge #4
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+  // const names = text.split('\n');
+  // console.log(names);
+  // for (const n of names) {
+  //   const narr = n.trim().toLowerCase().split('_');
+  //   narr[1] = narr[1][0].toUpperCase() + narr[1].slice(1);
+  //   console.log(narr.join(''));
+  // }
+
+  const rows = text.split('/n');
+  for (const [i, row] of rows.entries()) {
+    const [first, second] = row.toLowerCase().trim().split('_');
+    const output = `${first}${second.replace(
+      second[0],
+      second[0].toUpperCase()
+    )}`;
+
+    console.log(`${output.padEnd(20)}${'✔'.repeat(i + 1)}`);
+  }
+});
+
+//-------121-123 strings
+//Why does strings, a primitive data type, have methods
+//Boxing: js converts them to String objects behind the scence when string primitives call methods
+*/
+/*
 //-------119 coding chanllenge #3
 const gameEvents = new Map([
   [17, '⚽️ GOAL'],
