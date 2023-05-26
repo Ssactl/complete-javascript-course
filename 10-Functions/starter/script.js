@@ -54,3 +54,23 @@ createBooking('LH123', undefined, 1000);
 const greet = greeting => name => console.log(`${greeting} ${name}`);
 
 greet('hello')('jonas');
+
+//-----133 & 134
+//function has call and apply method to specify its this object when we not using the object itself to call the function;
+//call(object, argument1, arguemnt2...), apply(object, [arrgumens])
+//because now we have spread operator, so we no longer use apply method
+//to be more effective, js now has the bind method, it will return a new function
+//advantages: 1.it's reusable. we can just specify the stone arguments once, and then keep using the new fucntion; 2.now we can pass it as callback funciton to elements' event listeners without worrying the this keyword will point to elements; 3.to set the object argument as null, we also can use it to create partial application.
+
+//partial application
+const addTax = (rate, value) => value + value * rate;
+//const addVAT=addTax.bind(null,0.23);
+const addVAT = value => addTax(0.23, value);
+
+const addTaxRate = function (rate) {
+  return function (value) {
+    return value + value * rate;
+  };
+};
+
+const addVAT2 = addTaxRate(0.23);
