@@ -75,6 +75,7 @@ const addTaxRate = function (rate) {
 
 const addVAT2 = addTaxRate(0.23);
 
+/*
 //-----135 coding challeng #1
 const poll = {
   question: 'What is your favourite programming language?',
@@ -122,3 +123,26 @@ displayResultsTest.call(testData1);
 displayResultsTest.call(testData1, 'string');
 displayResultsTest.call(testData2);
 displayResultsTest.call(testData2, 'string');
+*/
+
+//------136
+//we can use IIFE when we just want to call a funciton once and remenber to warp them into parethises
+//and we also can use use curly brace to keep data privacy. curly braces can create block scope and of because it does not work on var
+
+//-------137
+//closures is something like a backpack of a function. It carries the variable envrionment in it where and when the function is given birth
+//so when the parent scope of a function, the execution content gone, the function still has access to the variable in that EC.
+//and we can not access that parent scope directly from our code. but we can use console.dir() to see them.
+//[[]] means interal property
+//and closures has propority over other scopes
+
+//A closure is the closed-over variable enviroment of the execution context in which a function was created, even after that EC is gone
+
+//-----139 coding challenge #2
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+  document.querySelector('body').addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+})();
