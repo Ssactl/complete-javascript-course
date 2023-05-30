@@ -104,9 +104,21 @@ const createUsernames = function (accs) {
 
 createUsernames(accounts);
 
+//accumulator -> SNOWBALL
+const calcPrintBalance = function (movements) {
+  const balance = movements.reduce(function (acc, cur, i, arr) {
+    return acc + cur;
+  }, 0);
+  labelBalance.textContent = `${balance} EUR`;
+};
+
+calcPrintBalance(account1.movements);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 /*
@@ -159,7 +171,7 @@ console.log('jonas'.at(0));
 
 //FOREACH
 //looping array
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
 
 // for (const movement of movements)
 for (const [i, movement] of movements.entries()) {
@@ -245,3 +257,36 @@ console.log(deposits);
 
 const depositsFor = [];
 for (const mov of movements) if (mov > 0) depositsFor.push(mov);
+
+//REDUCE
+//boil down an array into one single value
+//Maximum value
+const max = movements.reduce(
+  (max, cur) => (max < cur ? cur : max),
+  movements[0]
+);
+
+console.log(max);
+
+//-------coding challenge #2
+const calcAverageHumanAge = function (dogAges) {
+  const humanAges = dogAges.map(d => (d <= 2 ? 2 * d : 16 + d * 4));
+  console.log(humanAges);
+  const humanAgesGreater18 = humanAges.filter(d => d >= 18);
+  console.log(humanAgesGreater18);
+  // const average =
+  //   humanAgesGreater18.reduce((acc, cur) => acc + cur, 0) /
+  //   humanAgesGreater18.length;
+
+  const average = humanAgesGreater18.reduce(
+    (acc, cur, i, arr) => acc + cur / arr.length,
+    0
+  );
+  console.log(average);
+  return average;
+};
+
+calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+
+// TEST DATA 1: [5, 2, 4, 1, 15, 8, 3]
+// TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
