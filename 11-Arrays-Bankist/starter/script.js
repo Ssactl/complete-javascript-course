@@ -82,12 +82,34 @@ displayMovements(account1.movements);
 // console.log(containerMovements.innerHTML);
 // console.log(containerMovements.textContent);
 
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(s => s.at(0))
+      .join('');
+  });
+};
+
+//so the forEach() produce side effects. In this case is that it mutate the original arrays
+
+//the philoshopy: each function should recieve the data that it should work with, instead of using a global variable.
+//so the solution below is not working
+//we should create that kind of fucntion which can recieve any data we pass into it and work with them
+//we do not want to rely on the account array that we already have
+// accounts.forEach(account => {
+//   account.username = createUsernames(account.owner);
+// });
+
+createUsernames(accounts);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
 
 /////////////////////////////////////////////////
-
+/*
 let arr = ['a', 'b', 'c', 'd', 'e'];
 //SLICE
 // immutate the original array
@@ -182,7 +204,8 @@ currenciesUnique.forEach(function (value, _, map) {
 });
 
 // _ means a variable that is completely unnecessary
-
+*/
+/*
 //------coding challenge #1
 const checkDogs = function (dogsJulia, dogsKate) {
   //1
@@ -212,3 +235,13 @@ const checkDogs = function (dogsJulia, dogsKate) {
 checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 // TEST DATA 1: Julia's data [3, 5, 2, 12, 7], Kate's data [4, 1, 15, 8, 3]
 // TEST DATA 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
+*/
+
+const deposits = movements.filter(function (mov) {
+  return mov > 0;
+});
+console.log(movements);
+console.log(deposits);
+
+const depositsFor = [];
+for (const mov of movements) if (mov > 0) depositsFor.push(mov);
