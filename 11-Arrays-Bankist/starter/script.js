@@ -82,6 +82,27 @@ displayMovements(account1.movements);
 // console.log(containerMovements.innerHTML);
 // console.log(containerMovements.textContent);
 
+const calcDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const out = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(out)}€`;
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(mov => mov * 0.012)
+    .filter(mov => mov >= 1)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumInterest.textContent = `${interest}€`;
+};
+
+calcDisplaySummary(account1.movements);
+
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
@@ -269,24 +290,30 @@ const max = movements.reduce(
 console.log(max);
 
 //-------coding challenge #2
-const calcAverageHumanAge = function (dogAges) {
-  const humanAges = dogAges.map(d => (d <= 2 ? 2 * d : 16 + d * 4));
-  console.log(humanAges);
-  const humanAgesGreater18 = humanAges.filter(d => d >= 18);
-  console.log(humanAgesGreater18);
-  // const average =
-  //   humanAgesGreater18.reduce((acc, cur) => acc + cur, 0) /
-  //   humanAgesGreater18.length;
+//-------coding challenge #3
+// const calcAverageHumanAge = function (dogAges) {
+//   const humanAges = dogAges.map(d => (d <= 2 ? 2 * d : 16 + d * 4));
+//   console.log(humanAges);
+//   const humanAgesGreater18 = humanAges.filter(d => d >= 18);
+//   console.log(humanAgesGreater18);
+//   // const average =
+//   //   humanAgesGreater18.reduce((acc, cur) => acc + cur, 0) /
+//   //   humanAgesGreater18.length;
 
-  const average = humanAgesGreater18.reduce(
-    (acc, cur, i, arr) => acc + cur / arr.length,
-    0
-  );
-  console.log(average);
-  return average;
-};
+//   const average = humanAgesGreater18.reduce(
+//     (acc, cur, i, arr) => acc + cur / arr.length,
+//     0
+//   );
+//   console.log(average);
+//   return average;
+// };
 
-calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+const calcAverageHumanAge = Ages =>
+  Ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4))
+    .filter(age => age >= 18)
+    .reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
+
+console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 
 // TEST DATA 1: [5, 2, 4, 1, 15, 8, 3]
 // TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
