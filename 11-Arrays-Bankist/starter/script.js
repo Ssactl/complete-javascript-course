@@ -78,30 +78,28 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-displayMovements(account1.movements);
+
 // console.log(containerMovements.innerHTML);
 // console.log(containerMovements.textContent);
 
-const calcDisplaySummary = function (movements) {
-  const incomes = movements
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes}€`;
 
-  const out = movements
+  const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(out)}€`;
 
-  const interest = movements
+  const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(mov => mov * 0.012)
+    .map(mov => (mov * acc.interestRate) / 100)
     .filter(mov => mov >= 1)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumInterest.textContent = `${interest}€`;
 };
-
-calcDisplaySummary(account1.movements);
 
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
@@ -110,8 +108,46 @@ const createUsernames = function (accs) {
       .split(' ')
       .map(s => s.at(0))
       .join('');
+
+    console.log(acc.owner, acc.username);
   });
 };
+
+createUsernames(accounts);
+
+//Event handler
+let currentAccount;
+btnLogin.addEventListener('click', function (e) {
+  //prevent from submitting
+  e.preventDefault();
+
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+
+  console.log(currentAccount);
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    //DIsplay UI and welcome message
+    labelWelcome.textContent = `Welcome back ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+
+    containerApp.style.opacity = 100;
+
+    //CLear input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+    //DIsplay movements
+    displayMovements(currentAccount.movements);
+    //Display balance
+    calcPrintBalance(currentAccount.movements);
+    //DIsplay summary
+    calcDisplaySummary(currentAccount);
+
+    // console.log('LOGIN');
+  }
+});
 
 //so the forEach() produce side effects. In this case is that it mutate the original arrays
 
@@ -270,6 +306,7 @@ checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 // TEST DATA 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
 */
 
+/*
 const deposits = movements.filter(function (mov) {
   return mov > 0;
 });
@@ -288,7 +325,7 @@ const max = movements.reduce(
 );
 
 console.log(max);
-
+*/
 //-------coding challenge #2
 //-------coding challenge #3
 // const calcAverageHumanAge = function (dogAges) {
@@ -313,15 +350,17 @@ const calcAverageHumanAge = Ages =>
     .filter(age => age >= 18)
     .reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
-console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+// console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 
 // TEST DATA 1: [5, 2, 4, 1, 15, 8, 3]
 // TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
 
+/*
 //FIND
 for (const account of accounts) {
-  if ((account.owner = 'Jessica Davis')) {
+  if (account.owner === 'Jessica Davis') {
     console.log(account);
     break;
   }
 }
+*/
