@@ -172,3 +172,64 @@ Array.from(document.querySelectorAll('h1'));
 //so therefore all the arrays do not inherit this method
 //so developers know that it is related to Array. we also say that the from method is in the Arrar namespace
 //we usually use static methods kind of as helpers that should be related to a certain constructor
+
+//--------------------OBJECT.CREATE
+//still the idea of prototype inheritance, but works different from constructor funcitons and classes
+
+//manually set the prototype of an object to any other objects that we want
+
+const PersonProto = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const steven = Object.create(PersonProto);
+steven.name = 'Steven';
+steven.birthYear = 2002;
+
+console.log(steven);
+const sarah = Object.create(PersonProto);
+sarah.init('Sarah', 1979);
+sarah.calcAge();
+
+/*
+/////////////////////////////////////////////////
+// Coding challenge #2
+class CarCl {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.make} going at ${this.speed} km/h`);
+  }
+
+  brake() {
+    this.speed -= 5;
+    console.log(`${this.make} going at ${this.speed} km/h`);
+  }
+
+  get speedUS() {
+    return `${this.speed / 1.6} mi/h`;
+  }
+
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+  }
+}
+const ford = new CarCl('Ford', 120);
+console.log(ford.speedUS);
+ford.accelerate();
+console.log(ford.speedUS);
+ford.speedUS = 80;
+*/
+
+//////////////////////////////////////////////////
+//
