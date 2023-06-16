@@ -46,31 +46,6 @@ Person.hey();
 
 //????????????????????????????????????????????????????????????????????????????????????????????
 
-/*
-//-----------coding challenge #1
-function Car(make, speed) {
-  this.make = make;
-  this.speed = speed;
-}
-
-Car.prototype.accelerate = function () {
-  this.speed += 10;
-  console.log(`${this.make} going at ${this.speed} km/h`);
-};
-
-Car.prototype.brake = function () {
-  this.speed -= 5;
-  console.log(`${this.make} going at ${this.speed} km/h`);
-};
-
-const carBMW = new Car('BMW', 120);
-const carMercedes = new Car('Mercedes', 95);
-
-carBMW.accelerate();
-carBMW.accelerate();
-carMercedes.brake();
-*/
-
 //-----------------ES6 CLASSES
 //classes in JS are just syntatic sugar over prototype inheritance, they still implement prototype inheritance behind the scenes but with a syntax that makes more sense to people coming from other programming languages, and that was basically the goal adding classes to JS
 
@@ -82,6 +57,7 @@ carMercedes.brake();
 //const PersonCl = class {};
 
 //class declaration
+
 class PersonCl {
   constructor(fullName, birthYear) {
     this.fullName = fullName;
@@ -196,7 +172,6 @@ console.log(steven);
 const sarah = Object.create(PersonProto);
 sarah.init('Sarah', 1979);
 sarah.calcAge();
-
 /*
 /////////////////////////////////////////////////
 // Coding challenge #2
@@ -232,4 +207,85 @@ ford.speedUS = 80;
 */
 
 //////////////////////////////////////////////////
-//
+//Inheritance Between "Classes": COnstruction Functions
+
+const Person2 = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
+
+Person2.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+};
+
+const Student = function (firstName, birthYear, course) {
+  Person2.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+//linking prototype
+Student.prototype = Object.create(Person2.prototype);
+Student.prototype.constrcutor = Student;
+
+//after link the prototype, otherwise methods will be overrided
+Student.prototype.introduce = function () {
+  console.log | `My name is ${this.firstName} and i study ${this.course}`;
+};
+
+const mike = new Student('Mike', 2020, 'Computer Science');
+mike.introduce();
+mike.calcAge();
+
+/*
+///////////////////////////////////////////////////
+//-----------coding challenge #1
+function Car(make, speed) {
+  this.make = make;
+  this.speed = speed;
+}
+
+Car.prototype.accelerate = function () {
+  this.speed += 10;
+  console.log(`${this.make} going at ${this.speed} km/h`);
+};
+
+Car.prototype.brake = function () {
+  this.speed -= 5;
+  console.log(`${this.make} going at ${this.speed} km/h`);
+};
+
+const carBMW = new Car('BMW', 120);
+const carMercedes = new Car('Mercedes', 95);
+
+carBMW.accelerate();
+carBMW.accelerate();
+carMercedes.brake();
+
+/////////////////////////////////////////////////
+// coding challenge #3
+const EV = function (make, speed, charge) {
+  Car.call(this, make, speed);
+  this.charge = charge;
+};
+
+EV.prototype = Object.create(Car.prototype);
+EV.prototype.constrcutor = EV;
+
+EV.prototype.chargeBattery = function (chargeTo) {
+  this.charge = chargeTo;
+};
+
+EV.prototype.accelerate = function () {
+  this.speed += 20;
+  this.charge -= 1;
+  console.log(
+    `${this.make} going at ${this.speed} km/h, with a charge of ${this.charge}%`
+  );
+};
+
+const tesla = new EV('Tesla', 120, 23);
+tesla.accelerate();
+tesla.brake();
+tesla.chargeBattery(90);
+console.log(tesla);
+*/
