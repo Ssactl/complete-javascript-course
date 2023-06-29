@@ -3,6 +3,7 @@
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 
+/*
 ///////////////////////////////////////
 // Coding challenge #1
 const renderCountry = function (data, className = '') {
@@ -63,3 +64,45 @@ function whereAmI(lat, lng) {
 whereAmI(52.508, 13.381);
 whereAmI(19.037, 72.873);
 whereAmI(-33.933, 18.474);
+*/
+/////////////////////////////////////////////
+//coding challenge #2
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+const imgContainer = document.querySelector('.images');
+let imgEl;
+function createImage(imgPath) {
+  return new Promise(function (resolve, reject) {
+    imgEl = document.createElement('img');
+    imgEl.src = imgPath;
+
+    imgEl.addEventListener('load', function () {
+      imgContainer.append(imgEl);
+      resolve(imgEl);
+    });
+
+    imgEl.addEventListener('error', function () {
+      reject(new Error('Image not found'));
+    });
+  });
+}
+
+const imgPath = './img/img-1.jpg';
+createImage(imgPath)
+  .then(() => {
+    return wait(2);
+  })
+  .then(() => {
+    imgEl.style.display = 'none';
+    return createImage('./img/img-2.jpg');
+  })
+  .then(() => wait(2))
+  .then(() => {
+    imgEl.style.display = 'none';
+    return createImage('./img/img-3.jpg');
+  })
+  .catch(err => console.error(err));
