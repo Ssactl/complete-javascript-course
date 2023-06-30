@@ -65,6 +65,7 @@ whereAmI(52.508, 13.381);
 whereAmI(19.037, 72.873);
 whereAmI(-33.933, 18.474);
 */
+
 /////////////////////////////////////////////
 //coding challenge #2
 const wait = function (seconds) {
@@ -74,10 +75,10 @@ const wait = function (seconds) {
 };
 
 const imgContainer = document.querySelector('.images');
-let imgEl;
+let currentImg;
 function createImage(imgPath) {
   return new Promise(function (resolve, reject) {
-    imgEl = document.createElement('img');
+    const imgEl = document.createElement('img');
     imgEl.src = imgPath;
 
     imgEl.addEventListener('load', function () {
@@ -92,17 +93,66 @@ function createImage(imgPath) {
 }
 
 const imgPath = './img/img-1.jpg';
+/*
 createImage(imgPath)
-  .then(() => {
+  .then((img) => {
+    currentImg=img;
     return wait(2);
   })
   .then(() => {
-    imgEl.style.display = 'none';
+    currentImg.style.display = 'none';
     return createImage('./img/img-2.jpg');
   })
-  .then(() => wait(2))
+  .then((img) => {
+    currentImg=img;
+    wait(2)})
   .then(() => {
-    imgEl.style.display = 'none';
+    currentImg.style.display = 'none';
     return createImage('./img/img-3.jpg');
   })
   .catch(err => console.error(err));
+*/
+/////////////////////////////////////////////
+// (async function () {
+//   try {
+//     const city = await whereAmI();
+//     console.log(`1:${city}`);
+//   } catch (err) {
+//     console.log(`2:${err.message}`);
+//   }
+//   console.log(`3: Finished getting location`);
+// })();
+
+/////////////////////////////////////////////
+//coding challenge #3
+
+const loadPause = async function () {
+  try {
+    currentImg = await createImage('./img/img-1.jpg');
+    await wait(2);
+    currentImg.style.display = 'none';
+    currentImg = await createImage('./img/img-2.jpg');
+    await wait(2);
+    currentImg.style.display = 'none';
+    currentImg = await createImage('./img/img-3.jpg');
+    await wait(2);
+    currentImg.style.display = 'none';
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+// loadPause();
+
+let imgs;
+async function loadAll(imgArr) {
+  // const imgs = await Promise.all(imgArr.map(img => createImage(img)));
+  imgs = imgArr.map(img => createImage(img));
+  //?????????????????????????????????????????????????????
+  // Do we need to use async/await in map() ????????
+  // imgs.forEach(i => i.classList.add('parallel'));
+  console.log(imgs);
+}
+
+const imgArr = ['./img/img-1.jpg', './img/img-2.jpg', './img/img-3.jpg'];
+loadAll(imgArr);
